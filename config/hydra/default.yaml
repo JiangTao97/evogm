@@ -1,0 +1,9 @@
+defaults:
+  - override help: fusion_bench_help
+  - override job_logging: rich_logging
+
+run:
+  dir: ${log_dir}
+sweep:
+  dir: ${log_dir}
+  subdir: ${hydra.job.num}

@@ -1,0 +1,55 @@
+type: QwenEvaluationTaskPool
+data_dir: ${oc.env:EVOGM_DATA_DIR,data/swarm_eval}
+tokenizer: ${oc.env:EVOGM_MODEL_DIR,models/qwen25-1.5b-lora-experts}/base
+batch_size: 200
+tasks:
+  - name: mmlu
+    dataset: mmlu
+    eval_type: multiple_choice
+    split: test
+  - name: mmlu_pro
+    dataset: mmlu_pro
+    eval_type: multiple_choice
+    split: test
+  - name: hellaswag
+    dataset: hellaswag
+    eval_type: multiple_choice
+    split: test
+  - name: knowledge_crosswords
+    dataset: knowledge_crosswords
+    eval_type: multiple_choice
+    split: test
+    icl_prompt: "Question: The following are multiple choice questions (with
+      answers) about knowledge crosswords.
+
+
+      Question: Which of the following is a city in France?
+
+      A: London
+
+      B: Paris
+
+      C: Berlin
+
+      D: Rome
+
+      The answer is B\n"
+  - name: gsm8k
+    dataset: gsm8k
+    eval_type: exact_match
+    split: test
+  - name: nlgraph
+    dataset: nlgraph
+    eval_type: exact_match
+    split: test
+    batch_size: 50
+  - name: truthfulqa
+    dataset: truthfulqa
+    eval_type: multiple_choice
+    split: test
+  - name: mmlu_abstain
+    dataset: mmlu
+    eval_type: AbstainQA
+    split: test
+
+backend: hf

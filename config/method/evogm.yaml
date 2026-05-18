@@ -1,0 +1,41 @@
+name: evogm
+_target_: fusion_bench.method.evogm.EvoGMAlgorithm
+
+# Iterative parameters
+n_rounds: 2
+top_k: null
+
+# Population parameters
+population_size: 20
+max_iter: 3
+
+# Generator parameters
+hidden_dims: [ 128, 256, 256, 256, 128 ]
+generator_lr: 0.0001
+generator_epochs: 200
+
+# Loss weights
+cycle_scale: 100.0
+opt_scale: 1.0
+
+# Generator mode
+generator_mode: dual
+
+# Data split ratio
+winner_portion: 0.3
+
+# Evaluation mode
+evaluation_mode: multi_task
+target_tasks: null
+
+# Multi-GPU parallel evaluation
+num_gpus: 8
+
+# Output directory
+output_dir: ${log_dir}/search_process
+
+# Wandb parameters
+use_wandb: false
+wandb_project: evogm
+wandb_run_name: null
+wandb_offline: true

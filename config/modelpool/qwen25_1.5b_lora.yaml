@@ -1,0 +1,29 @@
+type: AutoModelForCausalLMPool
+# Qwen2.5-1.5B base model plus LoRA expert adapters.
+# Download/extract TaoJiangCN/qwen2.5-1.5b-tulu-v2-lora-experts to EVOGM_MODEL_DIR.
+lora: true
+
+models:
+  - name: _pretrained_
+    path: ${oc.env:EVOGM_MODEL_DIR,models/qwen25-1.5b-lora-experts}/base
+  - name: tulu_code_alpaca
+    path: ${oc.env:EVOGM_MODEL_DIR,models/qwen25-1.5b-lora-experts}/experts/tulu_code_alpaca
+  - name: tulu_cot
+    path: ${oc.env:EVOGM_MODEL_DIR,models/qwen25-1.5b-lora-experts}/experts/tulu_cot
+  - name: tulu_flan_v2
+    path: ${oc.env:EVOGM_MODEL_DIR,models/qwen25-1.5b-lora-experts}/experts/tulu_flan_v2
+  - name: tulu_gpt4_alpaca
+    path: ${oc.env:EVOGM_MODEL_DIR,models/qwen25-1.5b-lora-experts}/experts/tulu_gpt4_alpaca
+  - name: tulu_lima
+    path: ${oc.env:EVOGM_MODEL_DIR,models/qwen25-1.5b-lora-experts}/experts/tulu_lima
+  - name: tulu_oasst1
+    path: ${oc.env:EVOGM_MODEL_DIR,models/qwen25-1.5b-lora-experts}/experts/tulu_oasst1
+  - name: tulu_open_orca
+    path: ${oc.env:EVOGM_MODEL_DIR,models/qwen25-1.5b-lora-experts}/experts/tulu_open_orca
+  - name: tulu_science
+    path: ${oc.env:EVOGM_MODEL_DIR,models/qwen25-1.5b-lora-experts}/experts/tulu_science
+  - name: tulu_sharegpt
+    path: ${oc.env:EVOGM_MODEL_DIR,models/qwen25-1.5b-lora-experts}/experts/tulu_sharegpt
+  - name: tulu_wizardlm
+    path: ${oc.env:EVOGM_MODEL_DIR,models/qwen25-1.5b-lora-experts}/experts/tulu_wizardlm
+dtype: bfloat16

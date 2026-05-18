@@ -1,0 +1,21 @@
+defaults:
+  - hydra: default
+  - fabric: auto
+  - method: evogm
+  - modelpool: qwen25_1.5b_lora
+  - taskpool: qwen_eval
+  - _self_
+
+method:
+  evaluation_mode: multi_task
+
+seed: 42
+fast_dev_run: false
+use_lightning: true
+print_config: true
+save_tokenizer: true
+save_report: false
+log_dir: outputs/qwen25_evogm/${now:%Y-%m-%d_%H-%M-%S}
+dry_run: false
+
+merged_model_save_path: null

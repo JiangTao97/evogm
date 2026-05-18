@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "evogm-qwen25"
+version = "0.1.0"
+description = "Minimal EvoGM experiments for Qwen2.5-1.5B LoRA expert merging."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "EvoGM contributors" }]
+
+[project.scripts]
+evogm-qwen25 = "fusion_bench.scripts.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["fusion_bench*"]

@@ -1,0 +1,49 @@
+# Verified NPU experiment environment:
+#   conda env: evogm_npu
+#   Python: 3.10
+#   Ascend CANN: 8.1.RC2
+#   torch: 2.5.1
+#   torch-npu: 2.5.1+gitf1826dc
+#
+# Install torch and torch-npu from the Huawei Ascend/PyTorch wheel source that
+# matches your exact CANN stack before installing this file. They are not listed
+# as active pip requirements here because a generic PyPI torch wheel can silently
+# replace an Ascend-compatible build.
+#
+# Reference only:
+#   torch==2.5.1
+#   torch-npu==2.5.1
+accelerate==1.10.1
+transformers==4.56.1
+peft==0.17.1
+safetensors==0.6.2
+huggingface-hub==0.36.0
+tokenizers==0.22.0
+sentencepiece==0.2.1
+protobuf==6.32.0
+
+# Ascend CANN Python tooling imports these helper packages at runtime when
+# torch_npu initializes compilation options.
+cloudpickle==3.1.2
+decorator==5.2.1
+ml-dtypes==0.5.4
+tornado==6.5.5
+
+hydra-core==1.3.2
+omegaconf==2.3.0
+lightning==2.5.5
+pytorch-lightning==2.5.5
+lightning-utilities==0.15.2
+torchmetrics==1.8.2
+tensorboard==2.20.0
+
+numpy==1.26.4
+scipy==1.15.3
+scikit-learn==1.7.2
+pandas==2.3.2
+tqdm==4.67.1
+rich==14.2.0
+psutil==7.0.0
+PyYAML==6.0.3
+typing_extensions==4.15.0
+wandb==0.23.1
