@@ -3,33 +3,21 @@
 🌟 EvoGM: Learning to Merge LLMs via Evolutionary Generative Optimization 🌟
 </h1>
 
-**Accepted at ICML 2026**
-
 <div align="center">
   <img src="assets/evogm-overview.png" alt="EvoGM Overview" width="100%">
 </div>
 
-*EvoGM learns generative proposals for LoRA expert merging coefficients, using winner-loser search history to guide evolutionary model merging.*
+*EvoGM addresses evolutionary model merging as a learnable search problem. Instead of relying on hand-crafted mutation or crossover operators, it treats validation performance as feedback and learns where high-quality merging coefficients are likely to lie.*
 
-## Overview
+**Accepted at ICML 2026**
 
-EvoGM addresses evolutionary model merging as a learnable search problem. Instead of relying on hand-crafted mutation or crossover operators, it treats validation performance as feedback and learns where high-quality merging coefficients are likely to lie.
+## Method Contributions
 
-The core idea is to build winner-loser pairs from historical search trajectories and train a dual-generator to transform weak coefficient candidates into stronger ones while preserving diversity through cycle consistency. The learned generator is then embedded back into an evolutionary loop, so each round can sample better candidates from the observed performance landscape rather than searching blindly.
+- **Generative model merging.** We propose EvoGM, which reformulates evolutionary model merging as a learnable generative optimization problem for adaptive search in the merging space.
 
-For LLM merging, these candidates are LoRA expert merging coefficients. EvoGM evaluates them on downstream tasks, selects elite merges, and periodically refreshes the expert basis, allowing both the search strategy and the merged model pool to improve together.
+- **Preference-aware dual generation.** We introduce a cycle-consistent dual-generator with a winner–loser preference strategy to better leverage sparse validation feedback and synthesize effective merged models for unseen tasks.
 
-## Release Contents
-
-This repository is the clean release package for EvoGM, focused on Qwen2.5-1.5B LoRA expert merging. It contains the main EvoGM code path, GPU and Huawei Ascend NPU entrypoints, and the 8-task Qwen2.5 experiment setup.
-
-The released experiment supports:
-
-- Multi-task EvoGM over all 8 tasks.
-- Single-task EvoGM over each task independently.
-- Optional single-task subsets, for example `method.target_tasks=[gsm8k]`.
-
-The included tasks are `mmlu`, `mmlu_pro`, `hellaswag`, `knowledge_crosswords`, `gsm8k`, `nlgraph`, `truthfulqa`, and `mmlu_abstain`. `mmlu_abstain` reuses the bundled `mmlu.json` file with the AbstainQA evaluator.
+- **Strong empirical performance.** Extensive experiments across diverse benchmarks and model families show that EvoGM consistently outperforms state-of-the-art model merging baselines.
 
 ## Environment
 
@@ -185,6 +173,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 bash scripts/run_gpu_multi.sh
 ASCEND_RT_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 bash scripts/run_npu_multi.sh
 ```
 
-## Relationship to EvoGO
+## Ackonwledge
 
-EvoGM is inspired by [EvoGO](https://github.com/EMI-Group/evogo), a closely related upstream line on evolutionary generative optimization in [EvoX](https://github.com/EMI-Group/evox). EvoGO studies the general black-box optimization setting, while EvoGM adapts the same spirit of learned evolutionary proposal generation to LLM expert merging.
+- Motivated by [EvoGO](https://github.com/EMI-Group/evogo), which extends the [EvoX](https://github.com/EMI-Group/evox) framework with generative evolutionary optimization, EvoGM introduces a learnable generative search mechanism for LLM model merging.
+
