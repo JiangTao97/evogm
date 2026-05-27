@@ -19,6 +19,7 @@ models/
 .ruff_cache/
 .cache/
 .omx/
+.vscode/
 
 *.safetensors
 *.bin
